@@ -1,17 +1,30 @@
 package edu.uiowa.cs;
 
 public class Instruction {
-    int instruction_id;   // id indicating the instruction
+    public enum ID{
+        addu,
+        or,
+        beq,
+        bne,
+        slt,
+        lui,
+        //the following 4 IDs might be psuedo instructions
+        addiu,
+        ori,
+        blt,
+        bge,
+    };
+    ID instruction_id;   // id indicating the instruction
     int rd;            // register number
     int rs;            // register number
     int rt;            // register number
     int immediate;     // immediate, may use up to 32 bits
     int jump_address;  // jump address  (not used, so it is always 0)
     int shift_amount;  // shift amount (not used, so it is always 0)
-    int label_id;      // 0=no label on this line; nonzero is a unique id
-    int branch_label;  // label used by branch or jump instructions
+    String label;      // 0=no label on this line; nonzero is a unique id
+    String branch_label;  // label used by branch or jump instructions
 
-    public Instruction(int instruction_id, int rd, int rs, int rt, int immediate, int jump_address, int shift_amount, int label_id, int branch_label) {
+    public Instruction(ID instruction_id, int rd, int rs, int rt, int immediate, int jump_address, int shift_amount, String label, String branch_label) {
         this.instruction_id = instruction_id;
         this.rd = rd;
         this.rs = rs;
@@ -19,7 +32,7 @@ public class Instruction {
         this.immediate = immediate;
         this.jump_address = jump_address;
         this.shift_amount = shift_amount;
-        this.label_id = label_id;
+        this.label = label;
         this.branch_label = branch_label;
     }
     
@@ -38,40 +51,40 @@ public class Instruction {
         if (immediate != that.immediate) return false;
         if (jump_address != that.jump_address) return false;
         if (shift_amount != that.shift_amount) return false;
-        if (label_id != that.label_id) return false;
-        return branch_label == that.branch_label;
+        if (label == null ? that.label != null : !label.equals(that.label)) return false;
+        return (branch_label == null ? that.branch_label == null : branch_label.equals(that.branch_label));
 
     }
 
     @Override
     public int hashCode() {
-        int result = instruction_id;
+        int result = instruction_id.hashCode();
         result = 31 * result + rd;
         result = 31 * result + rs;
         result = 31 * result + rt;
         result = 31 * result + immediate;
         result = 31 * result + jump_address;
         result = 31 * result + shift_amount;
-        result = 31 * result + label_id;
-        result = 31 * result + branch_label;
+        result = 31 * result + label.hashCode();
+        result = 31 * result + branch_label.hashCode();
         return result;
     }
 
     public Instruction copy() {
-        return new Instruction(instruction_id, rd, rs, rt, immediate, jump_address, shift_amount, label_id, branch_label);
+        return new Instruction(instruction_id, rd, rs, rt, immediate, jump_address, shift_amount, label, branch_label);
     }
 
     @Override
     public String toString() {
         return "Instruction{" +
-                "instruction_id=" + instruction_id +
+                "instruction_id=" + instruction_id.toString() +
                 ", rd=" + rd +
                 ", rs=" + rs +
                 ", rt=" + rt +
                 ", immediate=" + immediate +
                 ", jump_address=" + jump_address +
                 ", shift_amount=" + shift_amount +
-                ", label_id=" + label_id +
+                ", label_id=" + label +
                 ", branch_label=" + branch_label +
                 '}';
     }
