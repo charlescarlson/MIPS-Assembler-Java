@@ -2,29 +2,85 @@ package edu.uiowa.cs;
 
 public class Instruction {
     public enum ID{
+        //R-Type
+        sll,
+        srl,
+        sra,
+        sllv,
+        srlv,
+        srav,
+        jr,
+        jalr,
+        mfhi,
+        mthi,
+        mflo,
+        mtlo,
+        mult,
+        multu,
+        div,
+        divu,
+        add,
         addu,
+        sub,
+        subu,
+        and,
         or,
+        xor,
+        nor,
+        slt,
+        sltu,
+        //J-Type
+        j,
+        jal,
+        //I-Type
         beq,
         bne,
-        slt,
-        lui,
-        //the following 4 IDs might be psuedo instructions
+        blez,
+        bgtz,
+        addi,
         addiu,
+        slti,
+        sltiu,
+        andi,
         ori,
+        xori,
+        lui,
+        lb,
+        lh,
+        lw,
+        lbu,
+        lhu,
+        sb,
+        sh,
+        sw,
+        
+        //the following IDs might be psuedo instructions
         blt,
         bge,
+        bgt,
+        ble,
+        mov,
+        li,
+        la,
     };
-    ID instruction_id;   // id indicating the instruction
-    int rd;            // register number
-    int rs;            // register number
-    int rt;            // register number
-    int immediate;     // immediate, may use up to 32 bits
-    int jump_address;  // jump address  (not used, so it is always 0)
-    int shift_amount;  // shift amount (not used, so it is always 0)
-    String label;      // 0=no label on this line; nonzero is a unique id
-    String branch_label;  // label used by branch or jump instructions
+    
+    
+    public final ID instruction_id;   // id indicating the instruction
+    public final int rd;            // register number destination
+    public final int rs;            // register number source
+    public final int rt;            // register number secondary source
+    public final int immediate;     // immediate, may use up to 32 bits
+    public final int jump_address;  // jump address  (not used, so it is always 0)
+    public final int shift_amount;  // shift amount (not used, so it is always 0)
+    public final String label;      // label for line
+    public final String branch_label;  // label used by branch or jump instructions
 
-    public Instruction(ID instruction_id, int rd, int rs, int rt, int immediate, int jump_address, int shift_amount, String label, String branch_label) {
+    protected Instruction(){
+        this(ID.add, 0, 0, 0, 0, 0, 0, "", "");
+    }
+    
+    //All
+    protected Instruction(ID instruction_id, int rd, int rs, int rt, int immediate, int jump_address, int shift_amount, String label, String branch_label) {
         this.instruction_id = instruction_id;
         this.rd = rd;
         this.rs = rs;
@@ -36,6 +92,32 @@ public class Instruction {
         this.branch_label = branch_label;
     }
     
+    //R-Type
+    protected Instruction(ID instruction_id, int rd, int rs, int rt, int shift_amount) {
+        this(instruction_id, rd, rs, rt, 0, 0, shift_amount, "", "");
+    }
+    
+    protected Instruction(ID instruction_id, int rd, int rs, int rt, int shift_amount, String label) {
+        this(instruction_id, rd, rs, rt, 0, 0, shift_amount, label, "");
+    }
+    
+    //J-Type
+    protected Instruction(ID instruction_id, int jump_address){
+        this(instruction_id, 0, 0, 0, 0, jump_address, 0, "", "");
+    }
+    
+    protected Instruction(ID instruction_id, int jump_address, String label){
+        this(instruction_id, 0, 0, 0, 0, jump_address, 0, label, "");
+    }
+    
+    //I-Type
+    protected Instruction(ID instruction_id, int rs, int rt, int immediate){
+        this(instruction_id, 0, rs, rt, immediate, 0, 0, "", "");
+    }
+    
+    protected Instruction(ID instruction_id, int rs, int rt, int immediate, String label){
+        this(instruction_id, 0, rs, rt, immediate, 0, 0, label, "");
+    }
 
     @Override
     public boolean equals(Object o) {
