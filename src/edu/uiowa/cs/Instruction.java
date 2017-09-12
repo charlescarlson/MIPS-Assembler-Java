@@ -134,7 +134,7 @@ public class Instruction {
     }
     
     // branch label instead of jump address
-    protected Instruction(ID instruction_id, String branch_label, String label){
+    protected Instruction(ID instruction_id, String label, String branch_label){
         this(instruction_id, 0, 0, 0, 0, 0, 0, label, branch_label);
     }
     

@@ -168,11 +168,11 @@ public class InstructionFactory extends Instruction {
         return new Instruction(ID.blez, rs, 0, branch_label);
     }
     
-    public static Instruction CreateBgtz(int rs, String immediate){
+    public static Instruction CreateBgtz(int rs, int immediate){
         return new Instruction(ID.bgtz, rs, 0, immediate);
     }
     
-    public static Instruction CreateBgtz(int rs, int branch_label){
+    public static Instruction CreateBgtz(int rs, String branch_label){
         return new Instruction(ID.bgtz, rs, 0, branch_label);
     }
     
@@ -387,8 +387,8 @@ public class InstructionFactory extends Instruction {
         return new Instruction(ID.beq, rs, rt, branch_label, label);
     }
     
-    public static Instruction CreateBne(int rs, int rt, int branch_label, String label){
-        return new Instruction(ID.bne, rs, rt, branch_label, label);
+    public static Instruction CreateBne(int rs, int rt, int immediate, String label){
+        return new Instruction(ID.bne, rs, rt, immediate, label);
     }
     
     public static Instruction CreateBne(int rs, int rt, String branch_label, String label){
