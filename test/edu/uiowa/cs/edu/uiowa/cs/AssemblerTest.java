@@ -29,34 +29,34 @@ public class AssemblerTest {
             // test 1
             List<Instruction> input = new LinkedList<Instruction>();
             // label1: addu $t0, $zero, $zero
-            input.add(new Instruction(2, 8, 0, 0, 0, 0, 0, 1, 0));
+            input.add(InstructionFactory.CreateAddu(8, 0, 0, "label1"));
             // addu $s0, $s7, $t4
-            input.add(new Instruction(2,16,23,12,0,0,0,0,0));
+            input.add(InstructionFactory.CreateAddu(16, 23, 12));
             // blt  $s0,$t0,label1
-            input.add(new Instruction(100,0,16,8,0,0,0,0,1));
+            input.add(InstructionFactory.CreateBlt(16, 8, "label1"));
             // addiu $s1,$s2,0xF00000
-            input.add(new Instruction(1, 0, 18, 17, 0xF00000, 0, 0, 0, 0));
+            input.add(InstructionFactory.CreateAddiu(17, 18, 0xF00000));
 
             // Phase 1
             Instruction[] phase1_expected = {
-                    new Instruction(2,8,0,0,0,0,0,1,0), // label1: addu $t0, $zero, $zero
-                    new Instruction(2, 16, 23,12,0,0,0,0,0), // addu $s0, $s7, $t4
-                    new Instruction(8, 1,16,8,0,0,0,0,0),  // slt $at,$s0,$t0
-                    new Instruction(6, 0,1,0,0,0,0,0,1),     // bne $at,$zero,label1
-                    new Instruction(9, 0,0,1,0x00F0,0,0,0,0), // lui $at, 0x00F0
-                    new Instruction(10,0,1,1,0x0000,0,0,0,0), // ori $at, $at 0x0000
-                    new Instruction(2,17,18,1,0,0,0,0,0) // addu $s1,$s2,$at
+                    InstructionFactory.CreateAddu(8, 0, 0, "label1"), // label1: addu $t0, $zero, $zero
+                    InstructionFactory.CreateAddu(16, 23, 12), // addu $s0, $s7, $t4
+                    InstructionFactory.CreateSlt(1, 16, 8),  // slt $at,$s0,$t0
+                    InstructionFactory.CreateBne(1, 0, "label1"),     // bne $at,$zero,label1
+                    InstructionFactory.CreateLui(1, 0x00F0), // lui $at, 0x00F0
+                    InstructionFactory.CreateOri(1, 1, 0x0000), // ori $at, $at 0x0000
+                    InstructionFactory.CreateAddu(17, 18, 1) // addu $s1,$s2,$at
             };
 
             // Phase 2
             Instruction[] phase2_expected = {
-                    new Instruction(2,8,0,0,0,0,0,1,0),
-                    new Instruction(2,16,23,12,0,0,0,0,0),
-                    new Instruction(8,1,16,8,0,0,0,0,0),
-                    new Instruction(6,0,1,0,0xfffffffc,0,0,0,1),
-                    new Instruction(9,0,0,1,0x00F0,0,0,0,0),
-                    new Instruction(10,0,1,1,0x0000,0,0,0,0),
-                    new Instruction(2,17,18,1,0,0,0,0,0)
+                    InstructionFactory.CreateAddu(8,0, 0, "label1"),//new Instruction(2,8,0,0,0,0,0,1,0),
+                    InstructionFactory.CreateAddu(16,23,12),//new Instruction(2,16,23,12,0,0,0,0,0),
+                    InstructionFactory.CreateSlt(1, 16, 8),//new Instruction(8,1,16,8,0,0,0,0,0),
+                    InstructionFactory.CreateBne(1, 0, 0xfffffffc),//new Instruction(6,0,1,0,0xfffffffc,0,0,0,1),
+                    InstructionFactory.CreateLui(1, 0x00F0),// new Instruction(9,0,0,1,0x00F0,0,0,0,0),
+                    InstructionFactory.CreateOri(1, 1, 0x0000),// new Instruction(10,0,1,1,0x0000,0,0,0,0),
+                    InstructionFactory.CreateAddu(17, 18, 1)// new Instruction(2,17,18,1,0,0,0,0,0)
             };
 
             // Phase 3
