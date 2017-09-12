@@ -11,10 +11,11 @@ public class InstructionFactory extends Instruction {
         return instruction.copy();
     }
     
+    /*
     public static Instruction CreateSll(int rd, int rt, int shift_amount){
         return new Instruction(ID.sll, rd, 0, rt, shift_amount);
     }
-    
+
     public static Instruction CreateSrl(int rd, int rt, int shift_amount){
         return new Instruction(ID.srl, rd, 0, rt, shift_amount);
     }
@@ -82,11 +83,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAdd(int rd, int rs, int rt){
         return new Instruction(ID.add, rd, rs, rt, 0);
     }
+    */
     
     public static Instruction CreateAddu(int rd, int rs, int rt){
         return new Instruction(ID.addu, rd, rs, rt, 0);
     }
     
+    /*
     public static Instruction CreateSub(int rd, int rs, int rt){
         return new Instruction(ID.sub, rd, rs, rt, 0);
     }
@@ -98,11 +101,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAnd(int rd, int rs, int rt){
         return new Instruction(ID.and, rd, rs, rt, 0);
     }
+    */
     
     public static Instruction CreateOr(int rd, int rs, int rt){
         return new Instruction(ID.or, rd, rs, rt, 0);
     }
     
+    /*
     public static Instruction CreateXor(int rd, int rs, int rt){
         return new Instruction(ID.xor, rd, rs, rt, 0);
     }
@@ -110,11 +115,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateNor(int rd, int rs, int rt){
         return new Instruction(ID.nor, rd, rs, rt, 0);
     }
+    */
     
     public static Instruction CreateSlt(int rd, int rs, int rt){
         return new Instruction(ID.slt, rd, rs, rt, 0);
     }
     
+    /*
     public static Instruction CreateSltu(int rd, int rs, int rt){
         return new Instruction(ID.sltu, rd, rs, rt, 0);
     }
@@ -134,6 +141,7 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateJal(String branch_label){
         return new Instruction(ID.jal, branch_label);
     }
+    */
     
     public static Instruction CreateBeq(int rs, int rt, int immediate){
         return new Instruction(ID.beq, rs, rt, immediate);
@@ -151,6 +159,7 @@ public class InstructionFactory extends Instruction {
         return new Instruction(ID.bne, rs, rt, branch_label);
     }
     
+    /*
     public static Instruction CreateBlez(int rs, int immediate){
         return new Instruction(ID.blez, rs, 0, immediate);
     }
@@ -170,11 +179,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAddi(int rt, int rs, int immediate){
         return new Instruction(ID.addi, rs, rt, immediate);
     }
+    */
     
     public static Instruction CreateAddiu(int rt, int rs, int immediate){
         return new Instruction(ID.addiu, rs, rt, immediate);
     }
     
+    /*
     public static Instruction CreateSlti(int rt, int rs, int immediate){
         return new Instruction(ID.slti, rs, rt, immediate);
     }
@@ -186,19 +197,23 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAndi(int rt, int rs, int immediate){
         return new Instruction(ID.andi, rs, rt, immediate);
     }
+    */
     
     public static Instruction CreateOri(int rt, int rs, int immediate){
         return new Instruction(ID.ori, rs, rt, immediate);
     }
     
+    /*
     public static Instruction CreateXori(int rt, int rs, int immediate){
         return new Instruction(ID.xori, rs, rt, immediate);
     }
+    */
     
     public static Instruction CreateLui(int rt, int immediate){
         return new Instruction(ID.lui, 0, rt, immediate);
     }
     
+    /*
     public static Instruction CreateLb(int rs, int immediate){
         return new Instruction(ID.lb, rs, 0, immediate);
     }
@@ -230,7 +245,9 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateSw(int rt, int rs, int immediate){
         return new Instruction(ID.sw, rs, rt, immediate);
     }
+    */
     
+    /*
     public static Instruction CreateSll(int rd, int rt, int shift_amount, String label){
         return new Instruction(ID.sll, rd, 0, rt, shift_amount, label);
     }
@@ -302,11 +319,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAdd(int rd, int rs, int rt, String label){
         return new Instruction(ID.add, rd, rs, rt, 0, label);
     }
+    */
     
     public static Instruction CreateAddu(int rd, int rs, int rt, String label){
         return new Instruction(ID.addu, rd, rs, rt, 0, label);
     }
     
+    /*
     public static Instruction CreateSub(int rd, int rs, int rt, String label){
         return new Instruction(ID.sub, rd, rs, rt, 0, label);
     }
@@ -318,11 +337,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAnd(int rd, int rs, int rt, String label){
         return new Instruction(ID.and, rd, rs, rt, 0, label);
     }
+    */
     
     public static Instruction CreateOr(int rd, int rs, int rt, String label){
         return new Instruction(ID.or, rd, rs, rt, 0, label);
     }
     
+    /*
     public static Instruction CreateXor(int rd, int rs, int rt, String label){
         return new Instruction(ID.xor, rd, rs, rt, 0, label);
     }
@@ -330,11 +351,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateNor(int rd, int rs, int rt, String label){
         return new Instruction(ID.nor, rd, rs, rt, 0, label);
     }
+    */
     
     public static Instruction CreateSlt(int rd, int rs, int rt, String label){
         return new Instruction(ID.slt, rd, rs, rt, 0, label);
     }
     
+    /*
     public static Instruction CreateSltu(int rd, int rs, int rt, String label){
         return new Instruction(ID.sltu, rd, rs, rt, 0, label);
     }
@@ -354,6 +377,7 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateJal(String branch_label, String label){
         return new Instruction(ID.jal, branch_label, label);
     }
+    */
     
     public static Instruction CreateBeq(int rs, int rt, int immediate, String label){
         return new Instruction(ID.beq, rs, rt, immediate, label);
@@ -371,6 +395,7 @@ public class InstructionFactory extends Instruction {
         return new Instruction(ID.bne, rs, rt, branch_label, label);
     }
     
+    /*
     public static Instruction CreateBlez(int rs, int immediate, String label){
         return new Instruction(ID.blez, rs, 0, immediate, label);
     }
@@ -390,11 +415,13 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAddi(int rt, int rs, int immediate, String label){
         return new Instruction(ID.addi, rs, rt, immediate, label);
     }
+    */
     
     public static Instruction CreateAddiu(int rt, int rs, int immediate, String label){
         return new Instruction(ID.addiu, rs, rt, immediate, label);
     }
     
+    /*
     public static Instruction CreateSlti(int rt, int rs, int immediate, String label){
         return new Instruction(ID.slti, rs, rt, immediate, label);
     }
@@ -406,19 +433,23 @@ public class InstructionFactory extends Instruction {
     public static Instruction CreateAndi(int rt, int rs, int immediate, String label){
         return new Instruction(ID.andi, rs, rt, immediate, label);
     }
+    */
     
     public static Instruction CreateOri(int rt, int rs, int immediate, String label){
         return new Instruction(ID.ori, rs, rt, immediate, label);
     }
     
+    /*
     public static Instruction CreateXori(int rt, int rs, int immediate, String label){
         return new Instruction(ID.xori, rs, rt, immediate, label);
     }
+    */
     
     public static Instruction CreateLui(int rt, int immediate, String label){
         return new Instruction(ID.lui, 0, rt, immediate, label);
     }
     
+    /*
     public static Instruction CreateLb(int rt, int rs, int immediate, String label){
         return new Instruction(ID.lb, rs, rt, immediate, label);
     }
@@ -449,5 +480,23 @@ public class InstructionFactory extends Instruction {
     
     public static Instruction CreateSw(int rt, int rs, int immediate, String label){
         return new Instruction(ID.sw, rs, rt, immediate, label);
+    }
+    */
+    
+    //pseudo instructions
+    public static Instruction CreateBlt(int rt, int rs, String branch_label){
+        return new Instruction(ID.blt, 0, rs, rt, 0, 0, 0, "", branch_label);
+    }
+    
+    public static Instruction CreateBlt(int rt, int rs, String label, String branch_label){
+        return new Instruction(ID.blt, 0, rs, rt, 0, 0, 0, label, branch_label);
+    }
+    
+    public static Instruction CreateBge(int rt, int rs, String branch_label){
+        return new Instruction(ID.bge, 0, rs, rt, 0, 0, 0, "", branch_label);
+    }
+    
+    public static Instruction CreateBge(int rt, int rs, String label, String branch_label){
+        return new Instruction(ID.bge, 0, rs, rt, 0, 0, 0, label, branch_label);
     }
 }

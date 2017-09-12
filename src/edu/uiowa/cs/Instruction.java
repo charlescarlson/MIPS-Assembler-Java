@@ -3,6 +3,7 @@ package edu.uiowa.cs;
 public class Instruction {
     public enum ID{
         //R-Type
+        /*
         sll,
         srl,
         sra,
@@ -20,31 +21,45 @@ public class Instruction {
         div,
         divu,
         add,
+        */
         addu,
+        /*
         sub,
         subu,
         and,
+        */
         or,
+        /*
         xor,
         nor,
+        */
         slt,
+        /*
         sltu,
         //J-Type
         j,
         jal,
+        */
         //I-Type
         beq,
         bne,
+        /*
         blez,
         bgtz,
         addi,
+        */
         addiu,
+        /*
         slti,
         sltiu,
         andi,
+        */
         ori,
+        /*
         xori,
+        */
         lui,
+        /*
         lb,
         lh,
         lw,
@@ -53,15 +68,18 @@ public class Instruction {
         sb,
         sh,
         sw,
+        */
         
         //the following IDs might be psuedo instructions
         blt,
         bge,
+        /*
         bgt,
         ble,
         mov,
         li,
         la,
+        */
     };
     
     
@@ -76,7 +94,7 @@ public class Instruction {
     public final String branch_label;  // label used by branch or jump instructions
 
     protected Instruction(){
-        this(ID.add, 0, 0, 0, 0, 0, 0, "", "");
+        this(ID.addiu, 0, 0, 0, 0, 0, 0, "", "");
     }
     
     //All
