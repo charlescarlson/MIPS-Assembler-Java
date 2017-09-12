@@ -123,24 +123,48 @@ public class InstructionFactory extends Instruction {
         return new Instruction(ID.j, jump_address);
     }
     
+    public static Instruction CreateJ(String branch_label){
+        return new Instruction(ID.j, branch_label);
+    }
+    
     public static Instruction CreateJal(int jump_address){
         return new Instruction(ID.jal, jump_address);
+    }
+    
+    public static Instruction CreateJal(String branch_label){
+        return new Instruction(ID.jal, branch_label);
     }
     
     public static Instruction CreateBeq(int rs, int rt, int immediate){
         return new Instruction(ID.beq, rs, rt, immediate);
     }
     
+    public static Instruction CreateBeq(int rs, int rt, String branch_label){
+        return new Instruction(ID.beq, rs, rt, branch_label);
+    }
+    
     public static Instruction CreateBne(int rs, int rt, int immediate){
         return new Instruction(ID.bne, rs, rt, immediate);
+    }
+    
+    public static Instruction CreateBne(int rs, int rt, String branch_label){
+        return new Instruction(ID.bne, rs, rt, branch_label);
     }
     
     public static Instruction CreateBlez(int rs, int immediate){
         return new Instruction(ID.blez, rs, 0, immediate);
     }
     
-    public static Instruction CreateBgtz(int rs, int immediate){
+    public static Instruction CreateBlez(int rs, String branch_label){
+        return new Instruction(ID.blez, rs, 0, branch_label);
+    }
+    
+    public static Instruction CreateBgtz(int rs, String immediate){
         return new Instruction(ID.bgtz, rs, 0, immediate);
+    }
+    
+    public static Instruction CreateBgtz(int rs, int branch_label){
+        return new Instruction(ID.bgtz, rs, 0, branch_label);
     }
     
     public static Instruction CreateAddi(int rt, int rs, int immediate){
@@ -319,24 +343,48 @@ public class InstructionFactory extends Instruction {
         return new Instruction(ID.j, jump_address, label);
     }
     
+    public static Instruction CreateJ(String branch_label, String label){
+        return new Instruction(ID.j, branch_label, label);
+    }
+    
     public static Instruction CreateJal(int jump_address, String label){
         return new Instruction(ID.jal, jump_address, label);
+    }
+    
+    public static Instruction CreateJal(String branch_label, String label){
+        return new Instruction(ID.jal, branch_label, label);
     }
     
     public static Instruction CreateBeq(int rs, int rt, int immediate, String label){
         return new Instruction(ID.beq, rs, rt, immediate, label);
     }
     
-    public static Instruction CreateBne(int rs, int rt, int immediate, String label){
-        return new Instruction(ID.bne, rs, rt, immediate, label);
+    public static Instruction CreateBeq(int rs, int rt, String branch_label, String label){
+        return new Instruction(ID.beq, rs, rt, branch_label, label);
+    }
+    
+    public static Instruction CreateBne(int rs, int rt, int branch_label, String label){
+        return new Instruction(ID.bne, rs, rt, branch_label, label);
+    }
+    
+    public static Instruction CreateBne(int rs, int rt, String branch_label, String label){
+        return new Instruction(ID.bne, rs, rt, branch_label, label);
     }
     
     public static Instruction CreateBlez(int rs, int immediate, String label){
         return new Instruction(ID.blez, rs, 0, immediate, label);
     }
     
+    public static Instruction CreateBlez(int rs, String branch_label, String label){
+        return new Instruction(ID.blez, rs, 0, branch_label, label);
+    }
+    
     public static Instruction CreateBgtz(int rs, int immediate, String label){
         return new Instruction(ID.bgtz, rs, 0, immediate, label);
+    }
+    
+    public static Instruction CreateBgtz(int rs, String branch_label, String label){
+        return new Instruction(ID.bgtz, rs, 0, branch_label, label);
     }
     
     public static Instruction CreateAddi(int rt, int rs, int immediate, String label){
@@ -371,8 +419,8 @@ public class InstructionFactory extends Instruction {
         return new Instruction(ID.lui, 0, rt, immediate, label);
     }
     
-    public static Instruction CreateLb(int rs, int immediate, String label){
-        return new Instruction(ID.lb, rs, 0, immediate, label);
+    public static Instruction CreateLb(int rt, int rs, int immediate, String label){
+        return new Instruction(ID.lb, rs, rt, immediate, label);
     }
     
     public static Instruction CreateLh(int rt, int rs, int immediate, String label){

@@ -110,6 +110,16 @@ public class Instruction {
         this(instruction_id, 0, 0, 0, 0, jump_address, 0, label, "");
     }
     
+    // branch label instead of jump address
+    protected Instruction(ID instruction_id, String branch_label){
+        this(instruction_id, 0, 0, 0, 0, 0, 0, "", branch_label);
+    }
+    
+    // branch label instead of jump address
+    protected Instruction(ID instruction_id, String branch_label, String label){
+        this(instruction_id, 0, 0, 0, 0, 0, 0, label, branch_label);
+    }
+    
     //I-Type
     protected Instruction(ID instruction_id, int rs, int rt, int immediate){
         this(instruction_id, 0, rs, rt, immediate, 0, 0, "", "");
@@ -117,6 +127,16 @@ public class Instruction {
     
     protected Instruction(ID instruction_id, int rs, int rt, int immediate, String label){
         this(instruction_id, 0, rs, rt, immediate, 0, 0, label, "");
+    }
+    
+    // branch label instead of immediate
+    protected Instruction(ID instruction_id, int rs, int rt, String branch_label){
+        this(instruction_id, 0, rs, rt, 0, 0, 0, "", branch_label);
+    }
+    
+    // branch label instead of immediate
+    protected Instruction(ID instruction_id, int rs, int rt, String branch_label, String label){
+        this(instruction_id, 0, rs, rt, 0, 0, 0, label, branch_label);
     }
 
     @Override
