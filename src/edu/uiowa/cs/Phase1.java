@@ -43,39 +43,35 @@ public class Phase1 {
                 int t2 = 0;
                 int t3 = 0;
                 int at = 0;
+               
 
                 if ( (currentInstruction.instruction_id.addiu == currentInstruction.instruction_id) 
                         || (currentInstruction.instruction_id.ori == currentInstruction.instruction_id) 
                         && (imm > 32767) )  {
-                    //addiu $t1, $t2, 0x123456
-                    //rt, rs, imm
-                    t1 = rt;
-                    t2 = rs;
                     at = 1;
                     
-                    tals.add( InstructionFactory.CreateLui(t2, upperImm));
-                    tals.add( InstructionFactory.CreateOri(t1, t2, lowerImm));
-                    tals.add( InstructionFactory.CreateAddu(t1, t2, t3));
+                    //CreateAddiu(int rt, int rs, int immediate, String label){
+                    tals.add( InstructionFactory.CreateLui(at, upperImm));
+                    tals.add( InstructionFactory.CreateOri(at, at, lowerImm));
+                    tals.add( InstructionFactory.CreateAddu(rt, rs, at));
                     continue;
 
                 }
 
                 if ( (currentInstruction.instruction_id.blt == currentInstruction.instruction_id) ) {
-                    t1 = rt;
-                    t2 = rs;
-                    at = 1;
+                    //t1 = rt;
+                    //t2 = rs;
+                    if (rt > rs) {
+                        at = 1;
+                    }
+                    else at = 0;
                     
-                    tals.add( InstructionFactory.CreateSlt(at, t1, t2, label));
-                    tals.add( InstructionFactory.CreateBlt(at, 0, label));
+                    tals.add( InstructionFactory.CreateSlt(at, rt, rs));
+                    tals.add( InstructionFactory.CreateBne(at, 0, branchLabel));
                     continue;
                 }
 
                 if ( (currentInstruction.instruction_id.bge == currentInstruction.instruction_id) ) {
-                    //slt $at,r1,r2
-                    //beq $at,$zero,hello
-                    
-                    t1 = rt;
-                    t2 = rs;
                     
                     tals.add( InstructionFactory.CreateSlt(at, t1, t2, label));
                     tals.add( InstructionFactory.CreateBeq(at, t1, label));
