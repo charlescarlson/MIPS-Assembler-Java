@@ -16,8 +16,28 @@ public class Phase2 {
      * unresolved: list of instructions without resolved addresses
      * first_pc: address where the first instruction will eventually be placed in memory
      */
+    
+    public static List<Instruction> addressResolvedTals = new LinkedList<Instruction>();
+    
     public static List<Instruction> resolve_addresses(List<Instruction> unresolved, int first_pc) {
-        return null;
+        for (int i = 0; i < addressResolvedTals.size(); i++) {
+            Instruction currentInstruction = addressResolvedTals.get(i);
+            
+            // if line has a label
+            if (currentInstruction.label != "") {
+                // save the address of line
+            }
+            
+            // if instruction is a branch
+            if ( currentInstruction.instruction_id.blt == currentInstruction.instruction_id 
+                    || currentInstruction.instruction_id.bge == currentInstruction.instruction_id
+                    || currentInstruction.instruction_id.blt == currentInstruction.instruction_id
+                    || currentInstruction.instruction_id.beq == currentInstruction.instruction_id ) 
+            {
+                
+            }
+        }
+        return addressResolvedTals;
     }
 
 }
