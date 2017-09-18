@@ -62,6 +62,7 @@ public class Phase3 {
                     int funct = 00000000000000000000000000100001; //bits 0-5
                     int shamt = 00000000000000000000000000000000; //bits 6-10;
                     int bit_010 = funct ^ shamt; // funct XOR shamt
+                    //bit 26-32 in R type is always zero
 
                     int bit_032 = bit_010 ^ bit_1125;
                     binary32.add(bit_032);
@@ -71,8 +72,9 @@ public class Phase3 {
                         )  {
 
                     LinkedList<Integer> addiu_binary = new LinkedList<Integer>();
-                    int opcode = 00000000000000000000000000001001;
-                    addiu_binary.add(opcode);
+                    int opcode = 00000000000000000000000000001001; //bits 26-32
+                    int bit_032 = opcode ^ bit_1125;
+                    addiu_binary.add(bit_032);
                     continue;
                 }
                 if ( (currentInstruction.instruction_id.or == currentInstruction.instruction_id) ) {
@@ -86,44 +88,48 @@ public class Phase3 {
                 if ( (currentInstruction.instruction_id.beq == currentInstruction.instruction_id) ) {
                     LinkedList<Integer> beq_binary = new LinkedList<Integer>();
                     int opcode = 00000000000000000000000000000100;
-                    beq_binary.add(opcode);
+                    int bit_032 = opcode ^ bit_1125;
+                    beq_binary.add(bit_032);
                     continue;
                 } 
               
                 if ( (currentInstruction.instruction_id.bne == currentInstruction.instruction_id) ) {
                     LinkedList<Integer> bne_binary = new LinkedList<Integer>();
                     int opcode = 00000000000000000000000000000101;
-                    bne_binary.add(opcode);
+                    int bit_032 = opcode ^ bit_1125;
+                    bne_binary.add(bit_032);
                     continue;
                 }
                 if ( (currentInstruction.instruction_id.slt == currentInstruction.instruction_id) ) {
                     LinkedList<Integer> slt_binary = new LinkedList<Integer>();
                     int funct = 00000000000000000000000000101010; //bits 0-5
                     int shamt = 00000000000000000000000000101010; //bits 6-10
-                    int opcode = 00000000000000000000000000000000; //bits 26-31
-                    slt_binary.add(funct);
+                    int bit_010 = funct ^ shamt; // funct XOR shamt
+
+                    int bit_032 = bit_010 ^ bit_1125;
+                    slt_binary.add(bit_032);
                     continue;
                 }               
                 if ( (currentInstruction.instruction_id.lui == currentInstruction.instruction_id) ) {
                     LinkedList<Integer> lui_binary = new LinkedList<Integer>();
                     int opcode = 00000000000000000000000000001111;
-                    lui_binary.add(opcode);
+                    int bit_032 = opcode ^ bit_1125;
+                    lui_binary.add(bit_032);
                     continue;
                 }
                 if ( (currentInstruction.instruction_id.ori == currentInstruction.instruction_id) ) {
                     LinkedList<Integer> ori_binary = new LinkedList<Integer>();
                     int opcode = 00000000000000000000000000001101;
-                    ori_binary.add(opcode);
+                    int bit_032 = opcode ^ bit_1125;
+                    ori_binary.add(bit_032);
                     continue;
                 }                
 
                 else
                 {
-                    binary32.add(0000010);
                     return binary32;
                 }
             }
-        binary32.add(52418);
         return binary32;
     }
 }
