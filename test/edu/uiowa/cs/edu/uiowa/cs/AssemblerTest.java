@@ -22,8 +22,10 @@ public class AssemblerTest {
             assertArrayEquals(expectedP2, resolved_tals.toArray());
 
             // Phase 3
-            List<Integer> translated = Phase3.translate_instructions(resolved_tals);        
+            List<Integer> translated = Phase3.translate_instructions(resolved_tals);  
             assertArrayEquals(expectedP3, translated.toArray());
+            
+            
         }
 
         @Test
