@@ -126,12 +126,13 @@ public class Phase3 {
                 }               
                 if ( (currentInstruction.instruction_id.lui == currentInstruction.instruction_id) ) {
                     //I-Type
+                    //upper bit immediate, low bit are zeros 
                     int imm_bit = currentInstruction.immediate;
-                    int rt_bit = currentInstruction.rt << 20;
+                    int rt_bit = 0;
                     int bit_0_20 = imm_bit ^ rt_bit;
-                    int rs_bit = currentInstruction.rs << 25;
+                    int rs_bit = 0 <<25;
                     int bit_0_25 = bit_0_20 ^ rs_bit; 
-                    int opcode_bit = 15 << 31;
+                    int opcode_bit = 0 <<31;
                     int bit_32 = opcode_bit ^ bit_0_25;
                     String answer = Integer.toHexString(bit_32);
                     //int hex_answer = Integer.parseInt(answer, 16);
@@ -139,11 +140,13 @@ public class Phase3 {
                     continue;
                 }
                 if ( (currentInstruction.instruction_id.ori == currentInstruction.instruction_id) ) {
-                    //I-Type
-                    int imm_bit = currentInstruction.immediate;
-                    int rt_bit = currentInstruction.rt << 20;
+                    //I-Type = opcode, rt, rs, imm
+                    //extends the imm to all 0's. 
+                    int imm_bit = 00;
+                    imm_bit = imm_bit << 0;
+                    int rt_bit = currentInstruction.rt << 21;
                     int bit_0_20 = imm_bit ^ rt_bit;
-                    int rs_bit = currentInstruction.rs << 25;
+                    int rs_bit = currentInstruction.rs << 26;
                     int bit_0_25 = bit_0_20 ^ rs_bit; 
                     int opcode_bit = 13 << 31;
                     int bit_32 = opcode_bit ^ bit_0_25;
