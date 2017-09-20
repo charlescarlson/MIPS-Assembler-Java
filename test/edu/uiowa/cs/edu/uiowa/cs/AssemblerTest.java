@@ -79,21 +79,7 @@ public class AssemblerTest {
                     phase2_expected,
                     phase3_expected);
         }
-        private static void test2Helper(List<Instruction> input2, Instruction[] test2expectedP1, Instruction[] test2expectedP2, Integer[] test2expectedP3) {
-        // Phase 1
-        List<Instruction> tals2 = Phase1.mal_to_tal(input2);
-        System.out.print(tals2.toString());
-        assertArrayEquals(test2expectedP1, tals2.toArray());
-            
-            
-        // Phase 2
-        List<Instruction> resolved_tals2 = Phase2.resolve_addresses(tals2, MARS_TEXT_SEGMENT_START);
-        assertArrayEquals(test2expectedP2, resolved_tals2.toArray());
 
-        // Phase 3
-        List<Integer> translated2 = Phase3.translate_instructions(resolved_tals2);        
-        assertArrayEquals(test2expectedP3, translated2.toArray());
-        }
         @Test
         public void test2() {
             /* Fill in your additional test case here! */
@@ -141,7 +127,7 @@ public class AssemblerTest {
                 0x10200000
             };
             
-            test2Helper(input2,
+            testHelper(input2,
                     test2phase1_expected,
                     test2phase2_expected, //still need to complete phase 2 test 2
                     test2phase3_expected);
