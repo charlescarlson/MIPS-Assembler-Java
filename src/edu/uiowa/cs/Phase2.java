@@ -21,6 +21,7 @@ public class Phase2 {
     public static LinkedList<LinkedList<Object>> listOfMappings = new LinkedList<LinkedList<Object>>();
     
     public static List<Instruction> resolve_addresses(List<Instruction> unresolved, int first_pc) {
+        int pc = first_pc;
         for (int i = 0; i < unresolved.size(); i++) {
             Instruction currentInstruction = unresolved.get(i);
             LinkedList<Object> mapping = new LinkedList<Object>();
@@ -51,11 +52,15 @@ public class Phase2 {
                 for (int j = 0; j < listOfMappings.size(); j++) {
                     // structure of elements in listOfMappings: {String label, int label_pc}
                     LinkedList<Object> currentMapping = listOfMappings.get(j);
+                    int addr = (Integer)currentMapping.get(1);
                     if (currentMapping.get(0) == currentInstruction.branch_label) {
-                        currentInstruction.immediate = 22;
+                        int immAddr = (addr - pc) / 4 ;
+                        currentInstruction.immediate = immAddr;
+                        currentInstruction.branch_label = "";
                     }
                 }
             }
+            pc += 4;
             addressResolvedTals.add(currentInstruction);
         }
         return addressResolvedTals;
