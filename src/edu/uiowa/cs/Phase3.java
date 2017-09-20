@@ -22,7 +22,7 @@ public class Phase3 {
             this.binary32 = binary32;
         }
     public static List<Integer> translate_instructions(List<Instruction> tals) {
-        tals = Phase1.tals;
+        //tals = Phase1.tals;
         // I-Type : addiu, beq, bne, lui, ori
         // I-Type : needs opcode, rs, rt, imm
         // R-Type : addu, or, alt
