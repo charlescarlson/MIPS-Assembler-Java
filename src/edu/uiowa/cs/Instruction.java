@@ -87,11 +87,11 @@ public class Instruction {
     public final int rd;            // register number destination
     public final int rs;            // register number source
     public final int rt;            // register number secondary source
-    public final int immediate;     // immediate, may use up to 32 bits
+    public int immediate;     // immediate, may use up to 32 bits
     public final int jump_address;  // jump address  (not used, so it is always 0)
     public final int shift_amount;  // shift amount (not used, so it is always 0)
     public final String label;      // label for line
-    public final String branch_label;  // label used by branch or jump instructions
+    public String branch_label;  // label used by branch or jump instructions
 
     protected Instruction(){
         this(ID.addiu, 0, 0, 0, 0, 0, 0, "", "");
