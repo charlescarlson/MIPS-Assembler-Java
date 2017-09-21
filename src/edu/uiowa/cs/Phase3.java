@@ -38,11 +38,11 @@ public class Phase3 {
                     int funct = 33; //bits 0-5
                     int shamt = 0 << 10; //bits 6-10;
                     int bit_010 = funct ^ shamt; // funct XOR shamt
-                    int rd_bit = currentInstruction.rd << 15;
+                    int rd_bit = currentInstruction.rd << 11;
                     int bit_0_15 = rd_bit ^ bit_010;
-                    int rt_bit = currentInstruction.rt << 20;
+                    int rt_bit = currentInstruction.rt << 16;
                     int bit_0_20 = bit_0_15 ^ rt_bit;
-                    int rs_bit = currentInstruction.rs << 25;
+                    int rs_bit = currentInstruction.rs << 21;
                     int bit_0_25 = bit_0_20 ^ rs_bit; 
                     String answer = Integer.toHexString(bit_0_25);
                     //int hex_answer = Integer.parseInt(answer, 16);
@@ -96,12 +96,13 @@ public class Phase3 {
               
                 if ( (currentInstruction.instruction_id.bne == currentInstruction.instruction_id) ) {
                     //I-Type
-                    int imm_bit = currentInstruction.immediate;
-                    int rt_bit = currentInstruction.rt << 20;
+                    int imm_bit = (currentInstruction.immediate);
+                    imm_bit = imm_bit ^ 0xFFFF0000;
+                    int rt_bit = currentInstruction.rt << 16;
                     int bit_0_20 = imm_bit ^ rt_bit;
-                    int rs_bit = currentInstruction.rs << 25;
+                    int rs_bit = currentInstruction.rs << 21;
                     int bit_0_25 = bit_0_20 ^ rs_bit; 
-                    int opcode_bit = 5 << 31;
+                    int opcode_bit = 5 << 26;
                     int bit_32 = opcode_bit ^ bit_0_25;
                     String answer = Integer.toHexString(bit_32);
                     //int hex_answer = Integer.parseInt(answer, 16);
@@ -113,11 +114,11 @@ public class Phase3 {
                     int funct = 42; //bits 0-5
                     int shamt = 0 << 10; //bits 6-10;
                     int bit_010 = funct ^ shamt; // funct XOR shamt
-                    int rd_bit = currentInstruction.rd << 15;
+                    int rd_bit = currentInstruction.rd << 11;
                     int bit_0_15 = rd_bit ^ bit_010;
-                    int rt_bit = currentInstruction.rt << 20;
+                    int rt_bit = currentInstruction.rt << 16;
                     int bit_0_20 = bit_0_15 ^ rt_bit;
-                    int rs_bit = currentInstruction.rs << 25;
+                    int rs_bit = currentInstruction.rs << 21;
                     int bit_0_25 = bit_0_20 ^ rs_bit; 
                     String answer = Integer.toHexString(bit_0_25);
                     //int hex_answer = Integer.parseInt(answer, 16);
@@ -128,11 +129,12 @@ public class Phase3 {
                     //I-Type
                     //upper bit immediate, low bit are zeros 
                     int imm_bit = currentInstruction.immediate;
-                    int rt_bit = 0;
+                    //imm_bit = imm_bit ^ 0xFFFF0000;
+                    int rt_bit = currentInstruction.rt << 16;
                     int bit_0_20 = imm_bit ^ rt_bit;
-                    int rs_bit = 0 <<25;
+                    int rs_bit = currentInstruction.rs << 21;
                     int bit_0_25 = bit_0_20 ^ rs_bit; 
-                    int opcode_bit = 0 <<31;
+                    int opcode_bit = 15 << 26;
                     int bit_32 = opcode_bit ^ bit_0_25;
                     String answer = Integer.toHexString(bit_32);
                     //int hex_answer = Integer.parseInt(answer, 16);
@@ -144,11 +146,12 @@ public class Phase3 {
                     //extended imm for 16-bits and all 0's. 
                     int imm_bit = 00;
                     imm_bit = imm_bit << 15;
-                    int rt_bit = currentInstruction.rt << 21;
+                    //imm_bit = imm_bit ^ 0xFFFF0000;
+                    int rt_bit = currentInstruction.rt << 16;
                     int bit_0_20 = imm_bit ^ rt_bit;
-                    int rs_bit = currentInstruction.rs << 26;
-                    int bit_0_25 = bit_0_20 ^ rs_bit; 
-                    int opcode_bit = 13 << 30;
+                    int rs_bit = currentInstruction.rs << 21;
+                    int bit_0_25 = bit_0_20 ^ rs_bit;
+                    int opcode_bit = 13 << 26;
                     int bit_32 = opcode_bit ^ bit_0_25;
                     String answer = Integer.toHexString(bit_32);
                     //int hex_answer = Integer.parseInt(answer, 16);
