@@ -55,8 +55,18 @@ public class Phase2 {
                     int addr = (Integer)currentMapping.get(1);
                     if (currentMapping.get(0) == currentInstruction.branch_label) {
                         int immAddr = (addr - pc) / 4 -1 ;
-                        currentInstruction.immediate = immAddr;
-                        currentInstruction.branch_label = "";
+                        //currentInstruction.immediate = immAddr;
+                        //currentInstruction.branch_label = "";
+                        Instruction newInstruction = new Instruction(currentInstruction.instruction_id,
+                                                                    currentInstruction.rd,
+                                                                    currentInstruction.rs,
+                                                                    currentInstruction.rt,
+                                                                    immAddr,
+                                                                    currentInstruction.jump_address,
+                                                                    currentInstruction.shift_amount,
+                                                                    currentInstruction.label,
+                                                                    "");
+                        currentInstruction = newInstruction;
                     }
                 }
             }
