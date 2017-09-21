@@ -54,7 +54,7 @@ public class Phase2 {
                     LinkedList<Object> currentMapping = listOfMappings.get(j);
                     int addr = (Integer)currentMapping.get(1);
                     if (currentMapping.get(0) == currentInstruction.branch_label) {
-                        int immAddr = (addr - pc) / 4 ;
+                        int immAddr = (addr - pc) / 4 -1 ;
                         currentInstruction.immediate = immAddr;
                         currentInstruction.branch_label = "";
                     }
