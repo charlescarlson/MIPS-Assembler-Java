@@ -13,13 +13,10 @@ public class Phase1 {
      * returns a list of TAL instructions (should be same size or longer than input list)
      */
     
-    public static List<Instruction> mals = new LinkedList<Instruction>();
-        public static List<Instruction> tals = new LinkedList<Instruction>();
+    public static List<Instruction> m = new LinkedList<Instruction>();
+    public static List<Instruction> t = new LinkedList<Instruction>();
+
     
-        public Phase1() {
-            this.mals = mals;
-            this.tals = tals;
-        }
     
     
     public static List<Instruction> mal_to_tal(List<Instruction> mals) {
@@ -51,9 +48,9 @@ public class Phase1 {
                     at = 1;
                     
                     //CreateAddiu(int rt, int rs, int immediate, String label){
-                    tals.add( InstructionFactory.CreateLui(at, upperImm));
-                    tals.add( InstructionFactory.CreateOri(at, at, lowerImm));
-                    tals.add( InstructionFactory.CreateAddu(rt, rs, at));
+                    t.add( InstructionFactory.CreateLui(at, upperImm));
+                    t.add( InstructionFactory.CreateOri(at, at, lowerImm));
+                    t.add( InstructionFactory.CreateAddu(rt, rs, at));
                     continue;
 
                 }
@@ -66,20 +63,20 @@ public class Phase1 {
                     }
                     else at = 0;
                     
-                    tals.add( InstructionFactory.CreateSlt(at, rt, rs));
-                    tals.add( InstructionFactory.CreateBne(at, 0, branchLabel));
+                    t.add( InstructionFactory.CreateSlt(at, rt, rs));
+                    t.add( InstructionFactory.CreateBne(at, 0, branchLabel));
                     continue;
                 }
 
                 if ( (currentInstruction.instruction_id.bge == currentInstruction.instruction_id) ) {
                     
-                    tals.add( InstructionFactory.CreateSlt(at, t1, t2, label));
-                    tals.add( InstructionFactory.CreateBeq(at, t1, label));
+                    t.add( InstructionFactory.CreateSlt(at, t1, t2, label));
+                    t.add( InstructionFactory.CreateBeq(at, t1, label));
                     continue;
                 }
-                else tals.add( currentInstruction);
+                else t.add(currentInstruction);
             }
         
-        return tals;
+        return t;
     }
 }
